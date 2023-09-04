@@ -89,7 +89,7 @@ public class Task3 {
         System.out.println();
     }
 
-    private static int[] range(int stop) {
+    public static int[] range(int stop) {
         int[] arrayResult = new int[stop];
         for (int i = 0; i < stop; i++) {
             arrayResult[i] = i;
