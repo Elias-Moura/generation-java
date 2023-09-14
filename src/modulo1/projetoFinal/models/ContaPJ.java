@@ -1,6 +1,6 @@
 package modulo1.projetoFinal.models;
 
-import modulo1.projetoFinal.exception.OperacaoDeDepositoInvalida;
+import modulo1.projetoFinal.exception.TransacaoInvalidaException;
 
 public class ContaPJ extends ClienteABC implements InterfaceConta{
 
@@ -20,12 +20,12 @@ public class ContaPJ extends ClienteABC implements InterfaceConta{
     }
 
     @Override
-    public double sacar(double valor) {
-        return 0;
+    public void sacar(double valor) {
+
     }
 
     @Override
-    public void depositar(double valor) throws OperacaoDeDepositoInvalida {
+    public void depositar(double valor) throws TransacaoInvalidaException {
 
     }
 
