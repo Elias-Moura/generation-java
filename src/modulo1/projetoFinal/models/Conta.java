@@ -1,12 +1,11 @@
 package modulo1.projetoFinal.models;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-public abstract class Conta extends ClienteABC{
+public abstract class Conta extends ClienteABC {
 
     private double saldo;
-    private HashMap<String, Double> extrato = new HashMap<>();
+    private ArrayList<Transacao> extrato = new ArrayList<>();
 
     public double getSaldo() {
         return saldo;
@@ -16,17 +15,22 @@ public abstract class Conta extends ClienteABC{
         this.saldo = saldo;
     }
 
-    public void addOperacaoExtrato(String tipo, double valor){
-        extrato.put(tipo, valor);
+    public void addOperacaoExtrato(String tipo, double valor) {
+        extrato.add(new Transacao(tipo, valor));
+    }
+
+    public ArrayList<Transacao> getExtrato() {
+        return extrato;
     }
 
     public void verExtrato() {
-        System.out.println("Seu extrato:");
-        for (String key: extrato.keySet()) {
-            for (double value: extrato.values()){
-                System.out.printf("%s : R$ %,.2f",key, value);
-            }
+        System.out.println("\n- - - - - - - - - - - - - - - - - -");
+        System.out.println("- - - - - Seu extrato - - - - - - -");
+        for (var transacao : extrato) {
+            System.out.printf("%s: R$ %,.2f\n", transacao.nome(), transacao.valor());
         }
-        System.out.println();
+        System.out.println("- - - - - - - - - - - - - - - - - -");
+        System.out.println("- - - - - - - - - - - - - - - - - -\n");
     }
 }
+
