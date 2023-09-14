@@ -1,10 +1,16 @@
 package modulo1.projetoFinal;
 
-import modulo1.projetoFinal.exception.OperacaoDeDepositoInvalida;
-import modulo1.projetoFinal.models.ContaPF;
+import modulo1.projetoFinal.exception.TransacaoInvalidaException;
+
+/*
+*
+* Arrumar falha -> posso resgatar valor a maior do que eu possuo.
+*
+*
+*/
 
 public class main {
-    public static void main(String[] args) throws OperacaoDeDepositoInvalida {
+    public static void main(String[] args) throws TransacaoInvalidaException {
         var menu = new Menu();
 
         menu.exibirMenu();

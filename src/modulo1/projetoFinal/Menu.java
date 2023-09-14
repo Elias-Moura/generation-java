@@ -1,11 +1,12 @@
 package modulo1.projetoFinal;
 
-import modulo1.projetoFinal.exception.OperacaoDeDepositoInvalida;
-import modulo1.projetoFinal.models.ClienteABC;
+import modulo1.myUtils.StrUtil;
+import modulo1.projetoFinal.exception.TransacaoInvalidaException;
 import modulo1.projetoFinal.models.ContaPF;
 
+import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Menu {
@@ -69,28 +70,66 @@ public class Menu {
 
     public void rotinaDepositar(ContaPF usuario) {
         while (true) {
-            System.out.println("Digite o valor que deseja depositar: ");
+            System.out.print("Digite o valor que deseja depositar: ");
             try {
                 var deposito = Double.parseDouble(scanner.nextLine());
                 usuario.depositar(deposito);
-                System.out.printf(
-                        "O valor R$ %,.2f foi depositado e seu novo saldo é R$ %,.2f\n",
+
+                var msg = String.format(
+                        "O valor de R$ %,.2f foi depositado.\nSeu novo saldo é R$ %,.2f",
                         deposito, usuario.getSaldo()
                 );
+
+                printarBonito("Operação de Depósito", msg);
+
                 break;
-            } catch (NumberFormatException | OperacaoDeDepositoInvalida e) {
+            } catch (NumberFormatException | TransacaoInvalidaException e) {
                 System.out.printf("O valor informado é invalido.\n");
             }
         }
     }
     public void rotinaSacar(ContaPF usuario) {
+        while (true) {
+            System.out.println("Digite o valor que deseja sacar: ");
+            try {
+                var saque = Double.parseDouble(scanner.nextLine());
+                usuario.sacar(saque);
+
+                var msg = String.format(
+                        "O valor de R$ %,.2f foi resgatado.\nSeu novo saldo é R$ %,.2f",
+                        saque, usuario.getSaldo()
+                );
+
+                printarBonito("Operação de Saque", msg);
+                break;
+            } catch (NumberFormatException | TransacaoInvalidaException e) {
+                System.out.printf("O valor informado é invalido.\n");
+            }
+        }
     }
 
     public void rotinaExtrato(ContaPF usuario) {
-        usuario.verExtrato();
+        printarBonito("Extrato", usuario.getExtrato());
     }
 
     public void rotinaVerSaldo(ContaPF usuario) {
-        System.out.printf("Seu saldo é R$ %,.2f\n", usuario.getSaldo());
+        printarBonito("Saldo", String.format("Seu saldo é: R$ %,.2f", usuario.getSaldo()));
+    }
+
+    private void printarBonito(String titulo, String mensagem){
+        System.out.println("\n- - - - - - - - - - - - - - - - - - - - - -");
+        System.out.println(StrUtil.centerStr(titulo,44,"-"));
+        System.out.println(mensagem);
+        System.out.println("- - - - - - - - - - - - - - - - - - - - - -");
+        System.out.println("- - - - - - - - - - - - - - - - - - - - - -\n");
+    }
+    private void printarBonito(String titulo, ArrayList mensagem){
+        System.out.println("\n- - - - - - - - - - - - - - - - - - - - - -");
+        System.out.println(StrUtil.centerStr(titulo,44,"-"));
+        for (var item : mensagem){
+            System.out.println(item);
+        }
+        System.out.println("- - - - - - - - - - - - - - - - - - - - - -");
+        System.out.println("- - - - - - - - - - - - - - - - - - - - - -\n");
     }
 }
