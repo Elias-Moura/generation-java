@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public abstract class Conta extends ClienteABC {
 
     private double saldo;
-    private ArrayList<Transacao> extrato = new ArrayList<>();
+    private final ArrayList<Transacao> extrato = new ArrayList<>();
 
     public double getSaldo() {
         return saldo;

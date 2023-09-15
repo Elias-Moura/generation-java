@@ -9,7 +9,7 @@ import modulo1.projetoFinal.exception.TransacaoInvalidaException;
 *
 */
 
-public class main {
+public class Main {
     public static void main(String[] args) throws TransacaoInvalidaException {
         var menu = new Menu();
 
@@ -18,25 +18,16 @@ public class main {
 
         System.out.println(usuario+"\n");
 
+        //noinspection InfiniteLoopStatement
         while (true) {
             var escolha = menu.escolherOperacao();
 
             switch (escolha) {
-                case 1:
-                    menu.rotinaVerSaldo(usuario);
-                    break;
-                case 2:
-                    menu.rotinaDepositar(usuario);
-                    break;
-                case 3:
-                    menu.rotinaSacar(usuario);
-                    break;
-                case 4:
-                    menu.rotinaExtrato(usuario);
-                    break;
-                case 5:
-                    menu.sair(usuario);
-                    break;
+                case 1 -> menu.rotinaVerSaldo(usuario);
+                case 2 -> menu.rotinaDepositar(usuario);
+                case 3 -> menu.rotinaSacar(usuario);
+                case 4 -> menu.rotinaExtrato(usuario);
+                case 5 -> menu.sair(usuario);
             }
         }
     }
