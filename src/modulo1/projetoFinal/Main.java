@@ -2,13 +2,6 @@ package modulo1.projetoFinal;
 
 import modulo1.projetoFinal.exception.TransacaoInvalidaException;
 
-/*
-*
-* Arrumar falha -> posso resgatar valor a maior do que eu possuo.
-*
-*
-*/
-
 public class Main {
     public static void main(String[] args) throws TransacaoInvalidaException {
         var menu = new Menu();
