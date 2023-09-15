@@ -4,19 +4,14 @@ import modulo1.myUtils.StrUtil;
 import modulo1.projetoFinal.exception.TransacaoInvalidaException;
 import modulo1.projetoFinal.models.ContaPF;
 
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Menu {
 
     public Scanner scanner = new Scanner(System.in);
 
-    private void run(){
-        exibirMenu();
-    }
-    private void bemVindo(){
+    public void bemVindo(){
         System.out.println("* * * * * * * * * * * * * * * *");
         System.out.println("  - Bem Vindo ao Banco XPTO -  ");
         System.out.println("* * * * * * * * * * * * * * * *");
@@ -69,10 +64,6 @@ public class Menu {
         }
     }
 
-    public void exibirMenu() {
-        bemVindo();
-
-    }
 
     private boolean validaOperacao(int opcaoDeOperacao) {
         return opcaoDeOperacao >=1 && opcaoDeOperacao <=5;
@@ -92,8 +83,7 @@ public class Menu {
                 }
 
             } catch (NumberFormatException e ) {
-                System.out.printf("Operação invalida, tente novamente.\n");
-                continue;
+                System.out.println("Operação invalida, tente novamente.");
             }
         }
     }
@@ -114,7 +104,7 @@ public class Menu {
 
                 break;
             } catch (NumberFormatException | TransacaoInvalidaException e) {
-                System.out.printf("O valor informado é invalido.\n");
+                System.out.println("O valor informado é invalido.");
             }
         }
     }

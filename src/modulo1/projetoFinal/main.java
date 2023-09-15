@@ -13,7 +13,7 @@ public class main {
     public static void main(String[] args) throws TransacaoInvalidaException {
         var menu = new Menu();
 
-        menu.exibirMenu();
+        menu.bemVindo();
         var usuario = menu.cadastraUsuario();
 
         System.out.println(usuario+"\n");
