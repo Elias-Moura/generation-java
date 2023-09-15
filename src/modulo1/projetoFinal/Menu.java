@@ -24,19 +24,49 @@ public class Menu {
 
     public ContaPF cadastraUsuario() {
         System.out.println(" - - Cadastro de usuário - -  ");
-        System.out.print("Digite seu nome: ");
-        var nome = scanner.nextLine();
 
-        System.out.print("Digite seu sobrenome: ");
-        var sobrenome = scanner.nextLine();
-
-        System.out.print("Digite seu CPF (11 numeros): ");
-        var cpf = scanner.nextLine();
-
-        System.out.print("Digite o valor do seu depósito inicial: ");
-        var primeiroDeposito = Double.parseDouble(scanner.nextLine());
+        var nome = pedirNome();
+        var sobrenome = pedirSobrenome();
+        var cpf = pedirCPF();
+        var primeiroDeposito = pedirPrimeiroDeposito();
 
         return new ContaPF(nome, sobrenome, cpf, primeiroDeposito);
+    }
+
+    private Double pedirPrimeiroDeposito() {
+        while (true) {
+            System.out.print("Digite o valor do seu depósito inicial: ");
+            var primeiroDeposito = Double.parseDouble(scanner.nextLine());
+            if (primeiroDeposito > 0) {
+                return  primeiroDeposito;
+            }
+            else {
+                System.out.println("O primeiro depósito não pode ser zero ou negativo.\n");
+            }
+        }
+
+    }
+
+    private String pedirNome() {
+        System.out.print("Digite seu nome: ");
+        return scanner.nextLine();
+    }
+
+    private String pedirSobrenome() {
+        System.out.print("Digite seu sobrenome: ");
+        return scanner.nextLine();
+    }
+
+    private String pedirCPF() {
+        while (true) {
+            System.out.print("Digite seu CPF (11 numeros): ");
+            var cpf = scanner.nextLine();
+            if(cpf.length() != 11) {
+                System.out.println("CPF inválido - tente novamente.\n");
+                continue;
+            }
+            return cpf;
+        }
     }
 
     public void exibirMenu() {
@@ -45,12 +75,12 @@ public class Menu {
     }
 
     private boolean validaOperacao(int opcaoDeOperacao) {
-        return opcaoDeOperacao >=1 && opcaoDeOperacao <=4;
+        return opcaoDeOperacao >=1 && opcaoDeOperacao <=5;
     }
     public int escolherOperacao() {
         while (true) {
             System.out.println("Escolha uma operação abaixo:");
-            System.out.println("1 - Ver saldo\n2 - Depositar\n3 - Sacar\n4 - Ver extrato");
+            System.out.println("1 - Ver saldo\n2 - Depositar\n3 - Sacar\n4 - Ver extrato\n5 - Para sair");
 
             try {
                 var escolha = Integer.parseInt(scanner.nextLine());
@@ -133,5 +163,14 @@ public class Menu {
         }
         System.out.println("- - - - - - - - - - - - - - - - - - - - - -");
         System.out.println("- - - - - - - - - - - - - - - - - - - - - -\n");
+    }
+
+    public void sair(ContaPF usuario) {
+        System.out.println();
+        System.out.println("* * * * * * * * * * * * * * * * * * *");
+        System.out.println("Obrigado por usar os nossos serviços");
+        System.out.printf("Até logo %s.\n",usuario.nomeCompleto());
+        System.out.println("* * * * * * * * * * * * * * * * * * *");
+        System.exit(0);
     }
 }

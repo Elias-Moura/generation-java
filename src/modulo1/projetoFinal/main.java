@@ -34,6 +34,9 @@ public class main {
                 case 4:
                     menu.rotinaExtrato(usuario);
                     break;
+                case 5:
+                    menu.sair(usuario);
+                    break;
             }
         }
     }
