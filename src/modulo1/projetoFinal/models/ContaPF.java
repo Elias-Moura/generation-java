@@ -12,7 +12,7 @@ public class ContaPF extends Conta implements InterfaceConta {
         setSobrenome(sobrenome);
         CPF = cpf;
         setSaldo(primeroDeposito);
-        addOperacaoExtrato("Primeiro depósito", primeroDeposito); // refatorar
+        addOperacaoExtrato("Primeiro depósito", primeroDeposito);
     }
 
     public String getCPF() {
@@ -24,20 +24,18 @@ public class ContaPF extends Conta implements InterfaceConta {
         var trasacaoValida = validaTransacao(valor);
         var saldoSuficiente = validaSaldoSuficiente(valor);
         if (trasacaoValida && saldoSuficiente) {
-            setSaldo(getSaldo()  - valor);
+            setSaldo(getSaldo() - valor);
             var saque = String.format("%d° Saque", contadorResgates++);
             addOperacaoExtrato(saque, valor);
         } else {
             if (!trasacaoValida) {
-                throw new TransacaoInvalidaException("Você não pode realizar transações com valor negativo",valor);
+                throw new TransacaoInvalidaException("Você não pode realizar transações com valor negativo", valor);
             } else {
-                var msg = String.format("Saldo insuficiente. Seu saldo é R$ %,.2f e você tentou sacar: ", getSaldo());
+                var msg = String.format("Saldo insuficiente. Seu saldo é R$ %,.2f e você tentou sacar", getSaldo());
                 throw new TransacaoInvalidaException(msg, valor);
             }
         }
     }
-
-
     @Override
     public String toString() {
         return String.format(
@@ -45,16 +43,14 @@ public class ContaPF extends Conta implements InterfaceConta {
                 , nomeCompleto(), getCPF(), getSaldo()
         );
     }
-
     @Override
     public void depositar(double valor) throws TransacaoInvalidaException {
-        if (validaTransacao(valor)){
-           setSaldo(getSaldo()  + valor);
+        if (validaTransacao(valor)) {
+            setSaldo(getSaldo() + valor);
 
-           var deposito = String.format("%d° Depósito", contadorDeposito++);
-           addOperacaoExtrato(deposito, valor);
-        }
-        else {
+            var deposito = String.format("%d° Depósito", contadorDeposito++);
+            addOperacaoExtrato(deposito, valor);
+        } else {
             throw new TransacaoInvalidaException(valor);
         }
     }
