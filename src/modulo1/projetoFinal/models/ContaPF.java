@@ -21,15 +21,22 @@ public class ContaPF extends Conta implements InterfaceConta {
 
     @Override
     public void sacar(double valor) throws TransacaoInvalidaException {
-        if (validaTransacao(valor)) {
+        var trasacaoValida = validaTransacao(valor);
+        var saldoSuficiente = validaSaldoSuficiente(valor);
+        if (trasacaoValida && saldoSuficiente) {
             setSaldo(getSaldo()  - valor);
             var saque = String.format("%d° Saque", contadorResgates++);
             addOperacaoExtrato(saque, valor);
         } else {
-            throw new TransacaoInvalidaException(valor);
+            if (!trasacaoValida) {
+                throw new TransacaoInvalidaException("Você não pode realizar transações com valor negativo",valor);
+            } else {
+                var msg = String.format("Saldo insuficiente. Seu saldo é R$ %,.2f e você tentou sacar: ", getSaldo());
+                throw new TransacaoInvalidaException(msg, valor);
+            }
         }
-
     }
+
 
     @Override
     public String toString() {
@@ -39,9 +46,6 @@ public class ContaPF extends Conta implements InterfaceConta {
         );
     }
 
-    private boolean validaTransacao(double valor){
-        return valor > 0;
-    }
     @Override
     public void depositar(double valor) throws TransacaoInvalidaException {
         if (validaTransacao(valor)){
@@ -53,10 +57,5 @@ public class ContaPF extends Conta implements InterfaceConta {
         else {
             throw new TransacaoInvalidaException(valor);
         }
-    }
-
-    @Override
-    public String nomeCompleto() {
-        return getNome() + " " + getSobrenome();
     }
 }
