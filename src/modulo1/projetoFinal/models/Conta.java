@@ -27,7 +27,7 @@ public abstract class Conta extends ClienteABC {
         return valor <= saldo;
     }
     protected boolean validaTransacao(double valor){
-        return valor > 0;
+        return valor >= 0;
     }
 }
 
