@@ -21,6 +21,8 @@ public abstract class ClienteABC {
         this.sobrenome = sobrenome;
     }
 
-    public abstract String nomeCompleto();
+    public String nomeCompleto() {
+        return getNome() + " " + getSobrenome();
+    }
 
 }
