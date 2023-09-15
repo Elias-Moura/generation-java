@@ -102,8 +102,10 @@ public class Menu {
 
                 printarBonito("Operação de Saque", msg);
                 break;
-            } catch (NumberFormatException | TransacaoInvalidaException e) {
-                System.out.printf("O valor informado é invalido.\n");
+            } catch (NumberFormatException e) {
+                System.out.println("O valor informado é invalido.\n");
+            } catch (TransacaoInvalidaException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
