@@ -8,7 +8,10 @@ public class TransacaoInvalidaException extends Exception{
         super(msg + " " + valor);
     }
 
+    public TransacaoInvalidaException(String mensagem, double valor) {
+        super(mensagem + ": " + String.format("R$ %,.2f", valor));
+    }
     public TransacaoInvalidaException(double valor) {
-        super("Você não pode realizar transações com um valor negativo: " + valor);
+        super("Você não pode transferir um valor negativo: " + valor);
     }
 }
