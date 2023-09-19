@@ -11,7 +11,7 @@ public class Menu {
 
     public Scanner scanner = new Scanner(System.in);
 
-    public void bemVindo(){
+    public void bemVindo() {
         System.out.println("* * * * * * * * * * * * * * * *");
         System.out.println("  - Bem Vindo ao Banco XPTO -  ");
         System.out.println("* * * * * * * * * * * * * * * *");
@@ -33,9 +33,8 @@ public class Menu {
             System.out.print("Digite o valor do seu depósito inicial: ");
             var primeiroDeposito = Double.parseDouble(scanner.nextLine());
             if (primeiroDeposito > 0) {
-                return  primeiroDeposito;
-            }
-            else {
+                return primeiroDeposito;
+            } else {
                 System.out.println("O primeiro depósito não pode ser zero ou negativo.\n");
             }
         }
@@ -56,14 +55,13 @@ public class Menu {
         while (true) {
             System.out.print("Digite seu CPF (11 numeros): ");
             var cpf = scanner.nextLine();
-            if(cpf.length() != 11) {
+            if (cpf.length() != 11) {
                 System.out.println("CPF inválido - tente novamente.\n");
                 continue;
             }
             return cpf;
         }
     }
-
 
 
     public int escolherOperacao() {
@@ -73,9 +71,9 @@ public class Menu {
 
             try {
                 var escolha = Integer.parseInt(scanner.nextLine());
-                    return escolha;
-            } catch (NumberFormatException e ) {
-                System.out.println("Operação invalida, tente novamente.");
+                return escolha;
+            } catch (NumberFormatException e) {
+                System.out.println("Por favor, passe um número inteiro.");
             }
         }
     }
@@ -100,6 +98,7 @@ public class Menu {
             }
         }
     }
+
     public void rotinaSacar(ContaPF usuario) {
         while (true) {
             System.out.println("Digite o valor que deseja sacar: ");
@@ -130,17 +129,18 @@ public class Menu {
         printarBonito("Saldo", String.format("Seu saldo é: R$ %,.2f", usuario.getSaldo()));
     }
 
-    private void printarBonito(String titulo, String mensagem){
+    private void printarBonito(String titulo, String mensagem) {
         System.out.println("\n- - - - - - - - - - - - - - - - - - - - - -");
-        System.out.println(StrUtil.centerStr(titulo,44,"-"));
+        System.out.println(StrUtil.centerStr(titulo, 44, "-"));
         System.out.println(mensagem);
         System.out.println("- - - - - - - - - - - - - - - - - - - - - -");
         System.out.println("- - - - - - - - - - - - - - - - - - - - - -\n");
     }
-    private void printarBonito(String titulo, ArrayList mensagem){
+
+    private void printarBonito(String titulo, ArrayList mensagem) {
         System.out.println("\n- - - - - - - - - - - - - - - - - - - - - -");
-        System.out.println(StrUtil.centerStr(titulo,44,"-"));
-        for (var item : mensagem){
+        System.out.println(StrUtil.centerStr(titulo, 44, "-"));
+        for (var item : mensagem) {
             System.out.println(item);
         }
         System.out.println("- - - - - - - - - - - - - - - - - - - - - -");
@@ -151,7 +151,7 @@ public class Menu {
         System.out.println();
         System.out.println("* * * * * * * * * * * * * * * * * * *");
         System.out.println("Obrigado por usar os nossos serviços");
-        System.out.printf("Até logo %s.\n",usuario.nomeCompleto());
+        System.out.printf("Até logo %s.\n", usuario.nomeCompleto());
         System.out.println("* * * * * * * * * * * * * * * * * * *");
         System.exit(0);
     }
