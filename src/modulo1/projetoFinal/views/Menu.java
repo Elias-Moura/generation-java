@@ -1,4 +1,4 @@
-package modulo1.projetoFinal;
+package modulo1.projetoFinal.views;
 
 import modulo1.myUtils.StrUtil;
 import modulo1.projetoFinal.exception.TransacaoInvalidaException;
@@ -65,9 +65,7 @@ public class Menu {
     }
 
 
-    private boolean validaOperacao(int opcaoDeOperacao) {
-        return opcaoDeOperacao >=1 && opcaoDeOperacao <=5;
-    }
+
     public int escolherOperacao() {
         while (true) {
             System.out.println("Escolha uma operação abaixo:");
@@ -75,13 +73,7 @@ public class Menu {
 
             try {
                 var escolha = Integer.parseInt(scanner.nextLine());
-
-                if (validaOperacao(escolha)) {
                     return escolha;
-                } else {
-                    System.out.printf("%d não é uma operação invalida, tente novamente.\n", escolha);
-                }
-
             } catch (NumberFormatException e ) {
                 System.out.println("Operação invalida, tente novamente.");
             }
@@ -162,5 +154,9 @@ public class Menu {
         System.out.printf("Até logo %s.\n",usuario.nomeCompleto());
         System.out.println("* * * * * * * * * * * * * * * * * * *");
         System.exit(0);
+    }
+
+    public void escolhaInvalida() {
+        System.out.println("O número passado é inválido.\nTente novamente.");
     }
 }

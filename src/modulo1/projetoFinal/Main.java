@@ -1,6 +1,7 @@
 package modulo1.projetoFinal;
 
 import modulo1.projetoFinal.exception.TransacaoInvalidaException;
+import modulo1.projetoFinal.views.Menu;
 
 public class Main {
     public static void main(String[] args) throws TransacaoInvalidaException {
@@ -21,6 +22,7 @@ public class Main {
                 case 3 -> menu.rotinaSacar(usuario);
                 case 4 -> menu.rotinaExtrato(usuario);
                 case 5 -> menu.sair(usuario);
+                default -> menu.escolhaInvalida();
             }
         }
     }
