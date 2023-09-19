@@ -31,11 +31,15 @@ public class Menu {
     private Double pedirPrimeiroDeposito() {
         while (true) {
             System.out.print("Digite o valor do seu depósito inicial: ");
-            var primeiroDeposito = Double.parseDouble(scanner.nextLine());
-            if (primeiroDeposito > 0) {
-                return primeiroDeposito;
-            } else {
-                System.out.println("O primeiro depósito não pode ser zero ou negativo.\n");
+            try {
+                var primeiroDeposito = Double.parseDouble(scanner.nextLine());
+                if (primeiroDeposito > 0) {
+                    return primeiroDeposito;
+                } else {
+                    System.out.println("O primeiro depósito não pode ser zero ou negativo.\n");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Digite a casa decima separada por '.' ");
             }
         }
 
