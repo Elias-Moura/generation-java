@@ -19,7 +19,7 @@ public class ContaPFTest {
         assertEquals(contaPF.nomeCompleto(), "Elias Moura");
     }
     @Test
-    void cpfDeveSem12345678909(){
+    void cpfDeveSer12345678909(){
         var contaPF = new ContaPF("Elias", "Moura", "12345678909", 100000);
         assertEquals(contaPF.getCPF(), "12345678909");
     }
